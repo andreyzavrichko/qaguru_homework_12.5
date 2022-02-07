@@ -1,6 +1,6 @@
 # qaguru_homework_12.5
 
-## <img width="4%" title="Contents" src="images/logo/contents.png"> Содержание
+## Содержание
 
 > ➠ [Покрытый функционал](#-покрытый-функционал)
 >
@@ -17,7 +17,7 @@
 > ➠ [Пример запуска теста в Selenoid](#-пример-запуска-теста-в-selenoid)
 
 
-## <img width="4%" title="Functional" src="images/logo/functional.png"> Покрытый функционал
+## Покрытый функционал
 
 > Разработаны автотесты на <code>UI</code>.
 ### UI
@@ -35,7 +35,7 @@
 
 [Вернуться к содержанию](#-содержание) :top:
 
-## <img width="4%" title="Technologies" src="images/logo/technologies.png"> Технологический стек
+## Технологический стек
 
 <p align="center">
 <img width="6%" title="IntelliJ IDEA" src="images/logo/Intelij_IDEA.svg">
@@ -64,7 +64,7 @@
 > После завершения прогона отправляются уведомления с помощью бота в <code>Telegram</code>.
 [Вернуться к содержанию](#-содержание) :top:
 
-## <img width="4%" title="Terminal" src="images/logo/terminal.png"> Запуск тестов из терминала
+## Запуск тестов из терминала
 
 ### :joystick: Локальный запуск тестов
 
