@@ -1,5 +1,3 @@
-# qaguru_homework_12.5
-
 ## Содержание
 
 > ➠ [Покрытый функционал](#-покрытый-функционал)
@@ -33,8 +31,6 @@
 - [x] Проверка поиска большого значения
 - [x] Проверка смешанного типа запроса
 
-[Вернуться к содержанию](#-содержание) :top:
-
 ## Технологический стек
 
 <p align="center">
@@ -62,17 +58,17 @@
 >
 > <code>Jenkins</code> выполняет запуск тестов.
 > После завершения прогона отправляются уведомления с помощью бота в <code>Telegram</code>.
-[Вернуться к содержанию](#-содержание) :top:
+
 
 ## Запуск тестов из терминала
 
-### :joystick: Локальный запуск тестов
+### :robot: Локальный запуск тестов
 
 ```
-gradle clean
+gradle clean test
 ```
 
-### :joystick: Удаленный запуск тестов 
+### :robot: Удаленный запуск тестов 
 
 ```
 clean
@@ -86,18 +82,8 @@ test
 -Dthreads=${THREADS}
 ```
 
-### :joystick: Параметры сборки
+### :robot: Параметры сборки
 
-> <details>
-> <summary> :point_left: <code>TASK</code> – список тестов, сгруппированных по параметру тега. В зависимости от выбранного параметра будут запускаться определенные группы тестов.</summary>
->
-> **Доступные варианты:**
->
-> + <code>test</code> – запуск всех тестов
-> + <code>high_priority_tests</code> – запуск высокоприоритетных тестов с тегами _Critical_, _Highest_, _Blocker_, _High_
-> + <code>web_test</code> – запуск тестов с тегом _Web_
-> </details>
->
 > <code>REMOTE_URL</code> – адрес удаленного сервера, на котором будут запускаться тесты.
 >
 > <code>BROWSER</code> – браузер, в котором будут выполняться тесты (_по умолчанию - <code>chrome</code>_).
@@ -105,7 +91,42 @@ test
 > <code>BROWSER_VERSION</code> – версия браузера, в которой будут выполняться тесты (_по умолчанию - <code>91.0</code>_).
 >
 > <code>BROWSER_SIZE</code> – размер окна браузера, в котором будут выполняться тесты (_по умолчанию - <code>1920x1080</code>_).
->
-> <code>THREADS</code> – количество потоков для запуска тестов.
+
+
+
+### :skier: Главная страница Allure-отчета
+
+<p align="center">
+<img title="Allure Overview" src="images/screens/allure_overview.png">
+</p>
+
+### :eye_speech_bubble: Группировка тестов по проверяемому функционалу
+
+<p align="center">
+<img title="Allure Behaviors" src="images/screens/allure_behaviors.png">
+</p>
+
+
+### :frog: Основной дашборд
+
+<p align="center">
+<img title="Allure Overview Dashboard" src="images/screens/allure_overview_dashboard.png">
+</p>
+
+
+## <img width="4%" title="Telegram" src="images/logo/Telegram.svg"> Уведомления в Telegram с использованием бота
+
+> После завершения сборки специальный бот, созданный в <code>Telegram</code>, автоматически обрабатывает и отправляет сообщение с отчетом о прогоне.
+
+<p align="center">
+<img title="Telegram Notifications" src="images/screens/telegram_notifications.png">
+</p>
+
+## <img width="4%" title="Selenoid" src="images/logo/Selenoid.svg"> Пример запуска теста в Selenoid
+
+> К каждому тесту в отчете прилагается видео. Одно из таких видео представлено ниже.
+<p align="center">
+  <img title="Selenoid Video" src="images/gif/selenoid_video.gif">
+</p>
 
 
