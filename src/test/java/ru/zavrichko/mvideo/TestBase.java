@@ -32,8 +32,8 @@ public class TestBase {
         AllureAttachments.addBrowserConsoleLogs();
         Selenide.closeWebDriver();
 
-//        if (Project.isVideoOn()) {
-//            AllureAttachments.addVideo(sessionId);
-//        }
+        if (Project.isVideoOn()) {
+            AllureAttachments.addVideo(sessionId);
+        }
     }
 }
