@@ -1,44 +1,44 @@
 package ru.zavrichko.mvideo.tests;
 
 
-import com.codeborne.selenide.Condition;
 import io.qameta.allure.Description;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ru.zavrichko.mvideo.TestBase;
 import ru.zavrichko.mvideo.helpers.DriverUtils;
+import ru.zavrichko.mvideo.pages.MvideoPage;
 
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class MvideoTests extends TestBase {
+    MvideoPage mvideoPage = new MvideoPage();
+
     @Test
     @Description("Проверка поиска")
     @DisplayName("Проверка поиска")
     void mvideoSearchVisibleTests() {
-        step("Открываем сайт 'https://mvideo.ru'", () -> {
-            open("https://mvideo.ru");
-        });
-
+        step("Открываем сайт 'https://mvideo.ru'", () ->
+            open(baseUrl)
+        );
         step("Вводим в поиске значение", () -> {
-            $(".input__field").click();
-            $(".input__field").sendKeys("ролики");
-            $(".input__field").pressEnter();
+            mvideoPage.typeInput("ролики");
         });
-
-        step("Проверка отображения страницы поиска", () -> {
-            $(".layout__content").shouldBe(Condition.visible);
-        });
+        step("Проверка отображения страницы поиска", () ->
+            mvideoPage.typeResults()
+        );
     }
 
     @Test
     @Description("Проверка ошибок в консоле")
     @DisplayName("Проверка ошибок в консоле")
     void consoleShouldNotHaveErrorsTest() {
-        step("Open url 'https://mvideo.ru'", () ->
-                open("https://mvideo.ru"));
+        step("Открываем сайт 'https://mvideo.ru'", () ->
+            open(baseUrl)
+        );
 
         step("Console logs should not contain text 'SEVERE'", () -> {
             String consoleLogs = DriverUtils.getConsoleLogs();
@@ -52,18 +52,16 @@ public class MvideoTests extends TestBase {
     @Description("Проверка отображения количества товаров")
     @DisplayName("Проверка отображения количества товаров")
     void mvideoSearchCountTests() {
-        step("Открываем сайт 'https://mvideo.ru'", () -> {
-            open("https://mvideo.ru");
-        });
+        step("Открываем сайт 'https://mvideo.ru'", () ->
+            open(baseUrl)
+        );
 
         step("Вводим в поиске значение", () -> {
-            $(".input__field").click();
-            $(".input__field").sendKeys("ролики");
-            $(".input__field").pressEnter();
+            mvideoPage.typeInput("ролики");
         });
 
         step("Проверка количества найденного товара", () -> {
-            $(".layout__content").shouldHave(text("Найдено 22 товара"));
+            mvideoPage.typeResultsCount("Найдено 5 товаров");
         });
     }
 
@@ -71,16 +69,15 @@ public class MvideoTests extends TestBase {
     @Description("Проверка раздела Доступное качество")
     @DisplayName("Проверка раздела Доступное качество")
     void mvideoLinkQualityTests() {
-        step("Открываем сайт 'https://mvideo.ru'", () -> {
-            open("https://mvideo.ru");
-        });
+        step("Открываем сайт 'https://mvideo.ru'", () ->
+            open(baseUrl)
+        );
 
         step("Вводим в поиске значение", () -> {
-            $x("//a[text()='Доступное качество']").click();
+            mvideoPage.typeSearchLink();
         });
-
         step("Проверка текста", () -> {
-            $(".bp__hero-h").shouldHave(text("Здесь собраны товары по лучшим ценам!"));
+            mvideoPage.typeResultsTextValue("Здесь собраны товары по лучшим ценам!");
         });
     }
 
@@ -88,19 +85,17 @@ public class MvideoTests extends TestBase {
     @Description("Проверка брендов")
     @DisplayName("Проверка брендов")
     void mvideoBrandTests() {
-        step("Открываем сайт 'https://mvideo.ru'", () -> {
-            open("https://mvideo.ru");
-        });
-
+        step("Открываем сайт 'https://mvideo.ru'", () ->
+            open(baseUrl)
+        );
         step("Вводим в поиске значение", () -> {
-            $x("//a[text()='Доступное качество']").click();
-            $x("//a[@href='/promo/dom-mark188276420']").click();
+            mvideoPage.typeSearchLink();
+            mvideoPage.typeSearchPromo();
         });
-
         step("Проверка списка брендов", () -> {
-            $("#-brand-section").shouldHave(text("Tefal"));
-            $("#-brand-section").shouldHave(text("Philips"));
-            $("#-brand-section").shouldHave(text("Rowenta"));
+            mvideoPage.typeResultsBrand("Tefal");
+            mvideoPage.typeResultsBrand("Philips");
+            mvideoPage.typeResultsBrand("Rowenta");
         });
     }
 
@@ -108,18 +103,14 @@ public class MvideoTests extends TestBase {
     @Description("Проверка наличия фильтра")
     @DisplayName("Проверка наличия фильтра")
     void mvideoFilterTests() {
-        step("Открываем сайт 'https://mvideo.ru'", () -> {
-            open("https://mvideo.ru");
-        });
-
+        step("Открываем сайт 'https://mvideo.ru'", () ->
+            open(baseUrl)
+        );
         step("Вводим в поиске значение", () -> {
-            $(".input__field").click();
-            $(".input__field").sendKeys("телевизор");
-            $(".input__field").pressEnter();
+            mvideoPage.typeInput("телевизор");
         });
-
         step("Проверка фильтра", () -> {
-            $(".dropdown__title").shouldHave(text("Сначала популярные"));
+            mvideoPage.typeResultsDropdown("Сначала популярные");
         });
     }
 
@@ -127,18 +118,14 @@ public class MvideoTests extends TestBase {
     @Description("Проверка невалидного запроса")
     @DisplayName("Проверка невалидного запроса")
     void mvideoEmptySearchTests() {
-        step("Открываем сайт 'https://mvideo.ru'", () -> {
-            open("https://mvideo.ru");
-        });
-
+        step("Открываем сайт 'https://mvideo.ru'", () ->
+            open(baseUrl)
+        );
         step("Вводим в поиске значение", () -> {
-            $(".input__field").click();
-            $(".input__field").sendKeys("авпвапавпвапавп");
-            $(".input__field").pressEnter();
+            mvideoPage.typeInput("авпвапавпвапавп");
         });
-
         step("Проверка ошибки", () -> {
-            $(".empty-products__header").shouldHave(text("По вашему запросу ничего не найдено"));
+            mvideoPage.typeResultsEmpty("По вашему запросу ничего не найдено");
         });
     }
 
@@ -146,20 +133,15 @@ public class MvideoTests extends TestBase {
     @Description("Проверка скрипта")
     @DisplayName("Проверка скрипта")
     void mvideoErrorTests() {
-        step("Открываем сайт 'https://mvideo.ru'", () -> {
-            open("https://mvideo.ru");
-        });
-
+        step("Открываем сайт 'https://mvideo.ru'", () ->
+            open(baseUrl)
+        );
         step("Вводим в поиске значение", () -> {
-            $(".input__field").click();
-            $(".input__field").sendKeys("<script>allert</script>");
-            $(".input__field").pressEnter();
+            mvideoPage.typeInput("<script>allert</script>");
         });
-
         step("Проверка ошибки", () -> {
-            $(".empty-products-error__header").shouldHave(text("Ошибка"));
-            $(".empty-products-error__text").shouldHave(text("Извините, не удалось обработать ваш запрос."));
-
+            mvideoPage.typeResultsHeader("Ошибка");
+            mvideoPage.typeResultsText("Извините, не удалось обработать ваш запрос.");
         });
     }
 
@@ -167,18 +149,14 @@ public class MvideoTests extends TestBase {
     @Description("Проверка поиска большого значения")
     @DisplayName("Проверка поиска большого значения")
     void mvideoImageErrorTests() {
-        step("Открываем сайт 'https://mvideo.ru'", () -> {
-            open("https://mvideo.ru");
-        });
-
+        step("Открываем сайт 'https://mvideo.ru'", () ->
+            open(baseUrl)
+        );
         step("Вводим в поиске значение", () -> {
-            $(".input__field").click();
-            $(".input__field").sendKeys("55555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555");
-            $(".input__field").pressEnter();
+            mvideoPage.typeInput("55555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555");
         });
-
         step("Проверка отображения картинки", () -> {
-            $(".empty-products__image").shouldBe(Condition.visible);
+            mvideoPage.typeResultsImage();
         });
     }
 
@@ -186,19 +164,14 @@ public class MvideoTests extends TestBase {
     @Description("Проверка смешанного запроса")
     @DisplayName("Проверка смешанного запроса")
     void mvideoNoValidSearchTests() {
-        step("Открываем сайт 'https://mvideo.ru'", () -> {
-            open("https://mvideo.ru");
-        });
-
+        step("Открываем сайт 'https://mvideo.ru'", () ->
+            open(baseUrl)
+        );
         step("Вводим в поиске значение", () -> {
-            $(".input__field").click();
-            $(".input__field").sendKeys("мвидео-топ");
-            $(".input__field").pressEnter();
+            mvideoPage.typeInput("мвидео-топ");
         });
-
         step("Проверка количества найденного товара", () -> {
-            $(".layout__content").shouldHave(text("Найдено 2 товара"));
+            mvideoPage.typeResultsLayout("Найдено 2 товара");
         });
     }
-
 }

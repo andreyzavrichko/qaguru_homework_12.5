@@ -1,5 +1,6 @@
-package ru.zavrichko.mvideo.tests;
+package ru.zavrichko.mvideo;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.junit5.AllureJunit5;
@@ -19,6 +20,7 @@ public class TestBase {
     static void setUp() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
         DriverSettings.configure();
+        Configuration.baseUrl = "https://mvideo.ru";
     }
 
     @AfterEach
@@ -30,8 +32,8 @@ public class TestBase {
         AllureAttachments.addBrowserConsoleLogs();
         Selenide.closeWebDriver();
 
-        if (Project.isVideoOn()) {
-            AllureAttachments.addVideo(sessionId);
-        }
+//        if (Project.isVideoOn()) {
+//            AllureAttachments.addVideo(sessionId);
+//        }
     }
 }
