@@ -13,7 +13,7 @@ public class MvideoPage {
             searchLink = $x("//a[text()='Доступное качество']"),
             searchPromo = $x("//a[@href='/promo/dom-mark188276420']"),
 
-            resultsValue = $(".layout__content"),
+    resultsValue = $(".layout__content"),
             resultsValueCount = $(".layout__content"),
             resultsBrand = $("#-brand-section"),
             resultsDropdown = $(".dropdown__title"),
@@ -25,8 +25,7 @@ public class MvideoPage {
             resultsTextValue = $(".bp__hero-h");
 
 
-
-    public MvideoPage typeInput (String value) {
+    public MvideoPage typeInput(String value) {
         searchInput.click();
         searchInput.setValue(value);
         searchInput.pressEnter();
@@ -34,67 +33,73 @@ public class MvideoPage {
         return this;
     }
 
-    public MvideoPage typeResults () {
+    public MvideoPage typeResults() {
         resultsValue.shouldBe(Condition.visible);
 
         return this;
     }
 
-    public MvideoPage typeResultsCount (String value) {
+    public MvideoPage typeResultsCount(String value) {
         resultsValueCount.shouldHave(text(value));
 
         return this;
     }
 
-    public MvideoPage typeSearchLink () {
+    public MvideoPage typeSearchLink() {
         searchLink.click();
 
         return this;
     }
 
-    public MvideoPage typeSearchPromo () {
+    public MvideoPage typeSearchPromo() {
         searchPromo.click();
 
         return this;
     }
 
-    public MvideoPage typeResultsTextValue (String value) {
+    public MvideoPage typeResultsTextValue(String value) {
         resultsTextValue.shouldHave(text(value));
 
         return this;
     }
 
-    public MvideoPage typeResultsBrand (String value) {
+    public MvideoPage typeResultsBrand(String value) {
         resultsBrand.shouldHave(text(value));
 
         return this;
     }
-    public MvideoPage typeResultsDropdown (String value) {
+
+    public MvideoPage typeResultsDropdown(String value) {
         resultsDropdown.shouldHave(text(value));
 
         return this;
     }
-    public MvideoPage typeResultsEmpty (String value) {
+
+    public MvideoPage typeResultsEmpty(String value) {
         resultsEmpty.shouldHave(text(value));
 
         return this;
     }
-    public MvideoPage typeResultsHeader (String value) {
+
+    public MvideoPage typeResultsHeader(String value) {
         resultsHeader.shouldHave(text(value));
 
         return this;
     }
-    public MvideoPage typeResultsText (String value) {
+
+    public MvideoPage typeResultsText(String value) {
         resultsText.shouldHave(text(value));
 
         return this;
     }
-    public MvideoPage typeResultsImage () {
+
+    public MvideoPage typeResultsImage() {
         resultsImage.shouldBe(Condition.visible);
 
         return this;
     }
-    public MvideoPage typeResultsLayout (String value) {
+
+    public MvideoPage typeResultsLayout(String value) {
         resultsLayout.shouldHave(text(value));
 
         return this;

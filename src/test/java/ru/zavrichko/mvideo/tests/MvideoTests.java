@@ -22,13 +22,13 @@ public class MvideoTests extends TestBase {
     @DisplayName("Проверка поиска")
     void mvideoSearchVisibleTests() {
         step("Открываем сайт 'https://mvideo.ru'", () ->
-            open(baseUrl)
+                open(baseUrl)
         );
         step("Вводим в поиске значение", () -> {
             mvideoPage.typeInput("ролики");
         });
         step("Проверка отображения страницы поиска", () ->
-            mvideoPage.typeResults()
+                mvideoPage.typeResults()
         );
     }
 
@@ -37,7 +37,7 @@ public class MvideoTests extends TestBase {
     @DisplayName("Проверка ошибок в консоле")
     void consoleShouldNotHaveErrorsTest() {
         step("Открываем сайт 'https://mvideo.ru'", () ->
-            open(baseUrl)
+                open(baseUrl)
         );
 
         step("Console logs should not contain text 'SEVERE'", () -> {
@@ -53,7 +53,7 @@ public class MvideoTests extends TestBase {
     @DisplayName("Проверка отображения количества товаров")
     void mvideoSearchCountTests() {
         step("Открываем сайт 'https://mvideo.ru'", () ->
-            open(baseUrl)
+                open(baseUrl)
         );
 
         step("Вводим в поиске значение", () -> {
@@ -70,7 +70,7 @@ public class MvideoTests extends TestBase {
     @DisplayName("Проверка раздела Доступное качество")
     void mvideoLinkQualityTests() {
         step("Открываем сайт 'https://mvideo.ru'", () ->
-            open(baseUrl)
+                open(baseUrl)
         );
 
         step("Вводим в поиске значение", () -> {
@@ -86,7 +86,7 @@ public class MvideoTests extends TestBase {
     @DisplayName("Проверка брендов")
     void mvideoBrandTests() {
         step("Открываем сайт 'https://mvideo.ru'", () ->
-            open(baseUrl)
+                open(baseUrl)
         );
         step("Вводим в поиске значение", () -> {
             mvideoPage.typeSearchLink();
@@ -104,7 +104,7 @@ public class MvideoTests extends TestBase {
     @DisplayName("Проверка наличия фильтра")
     void mvideoFilterTests() {
         step("Открываем сайт 'https://mvideo.ru'", () ->
-            open(baseUrl)
+                open(baseUrl)
         );
         step("Вводим в поиске значение", () -> {
             mvideoPage.typeInput("телевизор");
@@ -119,7 +119,7 @@ public class MvideoTests extends TestBase {
     @DisplayName("Проверка невалидного запроса")
     void mvideoEmptySearchTests() {
         step("Открываем сайт 'https://mvideo.ru'", () ->
-            open(baseUrl)
+                open(baseUrl)
         );
         step("Вводим в поиске значение", () -> {
             mvideoPage.typeInput("авпвапавпвапавп");
@@ -134,7 +134,7 @@ public class MvideoTests extends TestBase {
     @DisplayName("Проверка скрипта")
     void mvideoErrorTests() {
         step("Открываем сайт 'https://mvideo.ru'", () ->
-            open(baseUrl)
+                open(baseUrl)
         );
         step("Вводим в поиске значение", () -> {
             mvideoPage.typeInput("<script>allert</script>");
@@ -150,7 +150,7 @@ public class MvideoTests extends TestBase {
     @DisplayName("Проверка поиска большого значения")
     void mvideoImageErrorTests() {
         step("Открываем сайт 'https://mvideo.ru'", () ->
-            open(baseUrl)
+                open(baseUrl)
         );
         step("Вводим в поиске значение", () -> {
             mvideoPage.typeInput("55555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555");
@@ -165,7 +165,7 @@ public class MvideoTests extends TestBase {
     @DisplayName("Проверка смешанного запроса")
     void mvideoNoValidSearchTests() {
         step("Открываем сайт 'https://mvideo.ru'", () ->
-            open(baseUrl)
+                open(baseUrl)
         );
         step("Вводим в поиске значение", () -> {
             mvideoPage.typeInput("мвидео-топ");
